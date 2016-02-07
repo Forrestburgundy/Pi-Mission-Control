@@ -27,7 +27,7 @@ class WeatherForecastHourly(BoxLayout):
                                     tm["hour"],
                                     tm["ampm"].lower())
         fc["su"] = summary["condition"]
-        fc["hg"] = summary["temp"]["metric"]
+        fc["hg"] = summary["temp"]["english"]
         fc["po"] = summary["pop"]
         self.weather = ("{dy}\n{su}\nHigh: "
                         "{hg}{dg}\nRain: {po}%").format(dg="C", **fc)
@@ -47,8 +47,8 @@ class WeatherForecastDay(BoxLayout):
         fc = {}
         self.day = summary["date"]["weekday_short"]
         fc["su"] = summary["conditions"]
-        fc["hg"] = summary["high"]["celsius"]
-        fc["lw"] = summary["low"]["celsius"]
+        fc["hg"] = summary["high"]["fahrenheit"]
+        fc["lw"] = summary["low"]["fahrenheit"]
         fc["po"] = summary["pop"]
         self.icon_url = summary["icon_url"]
         self.weather = ("{su}\nHigh: {hg}{dg}\n"
@@ -142,8 +142,8 @@ class WeatherSummary(Screen):
 
 
 class WeatherScreen(Screen):
-    forecast = "http://api.wunderground.com/api/{key}/forecast/q/{location}"
-    hourly = "http://api.wunderground.com/api/{key}/hourly/q/{location}"
+    forecast = "http://api.wunderground.com/api/df5ee10a09a6aeb2/forecast/q/FL/Tampa"
+    hourly = "http://api.wunderground.com/api/df5ee10a09a6aeb2/hourly/q/FL/Tampa"
 
     def __init__(self, **kwargs):
         super(WeatherScreen, self).__init__(**kwargs)
